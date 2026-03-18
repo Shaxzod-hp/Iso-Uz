@@ -3,7 +3,7 @@
         <div
             class="sidebar-header d-flex align-items-center justify-content-between py-0 px-3 border-secondary border-bottom">
             <div class="logo-box d-flex align-items-center gap-2 overflow-hidden flex-shrink-0">
-                <img src="/logotip.png" alt="Logo" width="40" style="flex-shrink: 0;">
+                <img :src="`${baseUrl}logotip.png`" alt="Logo" width="40" style="flex-shrink: 0;">
                 <span v-if="!isCollapsed" class="logo-text">Iso<span class="text-danger">Uz</span></span>
             </div>
             <div class="d-flex align-items-center gap-2">
@@ -43,6 +43,7 @@ const emit = defineEmits(['toggle'])
 
 const authStore = useAuthStore()
 const router = useRouter()
+const baseUrl = import.meta.env.BASE_URL
 
 const menuItems = [
     { path: '/teacher/dashboard', label: 'Dashboard', icon: 'bi bi-speedometer2' },

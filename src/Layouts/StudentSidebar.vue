@@ -3,7 +3,7 @@
     <!-- HEADER -->
     <div class="sidebar-header">
       <div class="logo-box">
-        <img src="/logotip.png" alt="Logo" width="35" />
+        <img :src="`${baseUrl}logotip.png`" alt="Logo" width="35" />
         <span class="logo-text">Iso<span class="text-danger">Uz</span></span>
       </div>
 
@@ -14,12 +14,7 @@
 
     <!-- MENU -->
     <nav class="sidebar-nav">
-      <router-link
-        v-for="item in menuItems"
-        :key="item.path"
-        :to="item.path"
-        class="nav-item"
-      >
+      <router-link v-for="item in menuItems" :key="item.path" :to="item.path" class="nav-item">
         <i :class="item.icon"></i>
         <span>{{ item.label }}</span>
       </router-link>
@@ -46,6 +41,7 @@ const emit = defineEmits(["toggle"]);
 
 const authStore = useAuthStore();
 const router = useRouter();
+const baseUrl = import.meta.env.BASE_URL;
 
 const menuItems = [
   {
@@ -107,6 +103,7 @@ function handleLogout() {
   overflow: hidden;
   min-width: 0;
 }
+
 .logo-box img {
   width: 40px;
   height: 40px;

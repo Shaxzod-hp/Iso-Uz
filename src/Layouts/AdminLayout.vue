@@ -4,7 +4,7 @@
     <aside :class="['admin-sidebar', { collapsed: isCollapsed }]">
       <div class="sidebar-header">
         <div class="logo-box">
-          <img src="/logotip.png" alt="Logo" width="40" />
+          <img :src="`${baseUrl}logotip.png`" alt="Logo" width="40" />
           <span v-if="!isCollapsed" class="logo-text">IsoUz <span class="text-danger">Admin</span></span>
         </div>
         <div class="d-flex align-items-center gap-2">
@@ -88,6 +88,7 @@ const route = useRoute();
 const router = useRouter();
 const authStore = useAuthStore();
 const isCollapsed = ref(false);
+const baseUrl = import.meta.env.BASE_URL;
 
 const pageTitle = computed(() => {
   if (route.path.includes("dashboard")) return "Dashboard";

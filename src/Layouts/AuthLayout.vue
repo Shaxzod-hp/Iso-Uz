@@ -2,7 +2,7 @@
   <div class="auth-wrapper">
     <!-- Background Video -->
     <video class="bg-video" autoplay muted loop playsinline>
-      <source src="/auth/auth.mp4" type="video/mp4" />
+      <source :src="`${baseUrl}auth/auth.mp4`" type="video/mp4" />
     </video>
 
     <!-- Dark Overlay -->
@@ -22,7 +22,9 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const baseUrl = import.meta.env.BASE_URL;
+</script>
 
 <style scoped>
 /* Wrapper */

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 import MainLayout from '@/Layouts/MainLayout.vue'
 import AuthLayout from '@/Layouts/AuthLayout.vue'
@@ -8,7 +8,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue'
 
 
 const router = createRouter({
-  history: createWebHashHistory()(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
 
     // PUBLIC (Access, Register Success)

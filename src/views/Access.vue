@@ -30,7 +30,7 @@
 
 .kirish {
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("student/bg-dashboard.jpg");
+    url("../assets/student/bg-dashboard.jpg");
   width: 100%;
   height: 100vh;
   background-repeat: no-repeat;

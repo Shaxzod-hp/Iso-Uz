@@ -1,0 +1,152 @@
+:root {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border-color: #f1f5f9;
+    --card-bg: #ffffff;
+    --sidebar-bg: #1e293b;
+}
+
+.dark-mode {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --card-bg: #1e293b;
+    --sidebar-bg: #0f172a;
+}
+
+body {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Table and Card fixes */
+.dark-mode .s-card,
+.dark-mode .d-card,
+.dark-mode .g-card,
+.dark-mode .card,
+.dark-mode .modal-container,
+.dark-mode .teacher-header,
+.dark-mode .student-header,
+.dark-mode .admin-header,
+.dark-mode .bg-white,
+.dark-mode .bg-light {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-primary) !important;
+}
+
+.dark-mode .teacher-layout,
+.dark-mode .teacher-main,
+.dark-mode .student-main,
+.dark-mode .admin-layout,
+.dark-mode .admin-main,
+.dark-mode .content-scroll,
+.dark-mode .container-fluid {
+    background-color: var(--bg-primary) !important;
+}
+
+.dark-mode .teacher-name,
+.dark-mode .student-name,
+.dark-mode .admin-name,
+.dark-mode .page-title,
+.dark-mode .fw-bold,
+.dark-mode .fw-semibold,
+.dark-mode .text-dark,
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6 {
+    color: var(--text-primary) !important;
+}
+
+.dark-mode .text-muted,
+.dark-mode .text-white-50,
+.dark-mode .text-secondary,
+.dark-mode small,
+.dark-mode .teacher-role,
+.dark-mode .student-role,
+.dark-mode .admin-role {
+    color: var(--text-secondary) !important;
+}
+
+/* Table Specifics */
+.dark-mode .table {
+    color: var(--text-primary) !important;
+    background-color: transparent !important;
+}
+
+.dark-mode .table :not(caption)>*>* {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+.dark-mode .table-hover tbody tr:hover td {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark-mode .table thead th {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-secondary) !important;
+}
+
+.dark-mode .form-control,
+.dark-mode .form-select,
+.dark-mode .input-wrapper input,
+.dark-mode .form-textarea-advanced {
+    background-color: #334155 !important;
+    border-color: #475569 !important;
+    color: #f8fafc !important;
+}
+
+.dark-mode p {
+    color: var(--text-primary) !important;
+}
+
+.dark-mode .btn-light {
+    background-color: #334155 !important;
+    border-color: #475569 !important;
+    color: #f8fafc !important;
+}
+
+/* Theme toggle button styling */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.2s;
+    color: #64748b;
+}
+
+.theme-toggle-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .theme-toggle-btn {
+    color: #f59e0b;
+}
+
+.dark-mode .theme-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Sidebar Dark overrides */
+.dark-mode .sidebar,
+.dark-mode .teacher-sidebar,
+.dark-mode .student-sidebar,
+.dark-mode .admin-sidebar {
+    background-color: var(--sidebar-bg) !important;
+}

@@ -63,7 +63,7 @@
                 </div>
               </div>
               <div>
-                <button class="btn btn-primary w-100 mt-3" @click="openLesson(lesson)">Videoni ko'rish</button>
+                <button class="btn btn-primary w-100 mt-5" @click="openLesson(lesson)">Videoni ko'rish</button>
               </div>
             </div>
           </div>

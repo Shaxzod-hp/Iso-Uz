@@ -59,18 +59,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Add New Placeholder -->
-      <div class="col-lg-4 col-md-6" @click="openModal">
-        <div
-          class="card border-0 shadow-sm rounded-4 h-100 border-2 border-dashed d-flex align-items-center justify-content-center p-5 text-muted pointer hover-bg-light"
-          style="cursor: pointer; background: transparent; border-style: dashed !important">
-          <div class="text-center">
-            <i class="bi bi-plus-circle fs-1 opacity-25 d-block mb-3"></i>
-            <h6 class="fw-bold mb-0">Yangi yo'nalish qo'shish</h6>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- MODAL -->

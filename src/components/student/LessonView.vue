@@ -29,7 +29,7 @@
     <div class="lessons-grid flex-grow-1 overflow-auto pe-2">
       <div class="row g-4">
         <div v-for="lesson in filteredLessons" :key="lesson.id" class="col-xl-4 col-md-6">
-          <div class="lesson-glass-card shadow-sm h-100" @click="openLesson(lesson)">
+          <div class="lesson-glass-card shadow-sm h-100">
             <div class="card-top">
               <div class="video-preview-box">
                 <img
@@ -61,6 +61,9 @@
                     {{ getStatusLabel(lesson) }}
                   </span>
                 </div>
+              </div>
+              <div>
+                <button class="btn btn-primary w-100" @click="openLesson(lesson)">Videoni ko'rish</button>
               </div>
             </div>
           </div>

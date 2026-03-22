@@ -1,5 +1,5 @@
 <template>
-  <div class="lesson-view h-100 d-flex flex-column bg-white p-4">
+  <div class="lesson-view h-100 d-flex flex-column bg-white p-1">
     <!-- Header Section -->
     <div class="header-section d-flex justify-content-between align-items-center mb-4">
       <div class="d-flex align-items-center gap-3">

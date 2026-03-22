@@ -1,14 +1,9 @@
 <template>
   <div class="container-fluid h-100 d-flex flex-column bg-white p-3">
     <!-- HEADER -->
-    <div
-      class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3"
-    >
+    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3">
       <div class="d-flex align-items-center gap-3">
-        <router-link
-          to="/student/groups"
-          class="btn btn-light shadow-sm rounded-3"
-        >
+        <router-link to="/student/groups" class="btn btn-light shadow-sm rounded-3">
           <i class="bi bi-chevron-left"></i>
         </router-link>
 
@@ -24,12 +19,7 @@
           <span class="input-group-text bg-light border-0">
             <i class="bi bi-search"></i>
           </span>
-          <input
-            type="text"
-            v-model="searchQuery"
-            class="form-control bg-light border-0"
-            placeholder="Qidirish..."
-          />
+          <input type="text" v-model="searchQuery" class="form-control bg-light border-0" placeholder="Qidirish..." />
         </div>
 
         <!-- FILTER -->
@@ -44,21 +34,13 @@
 
     <!-- LESSONS -->
     <div class="row g-3 flex-grow-1 overflow-auto">
-      <div
-        v-for="lesson in filteredLessons"
-        :key="lesson.id"
-        class="col-lg-4 col-md-6"
-      >
+      <div v-for="lesson in filteredLessons" :key="lesson.id" class="col-lg-4 col-md-6">
         <div class="card h-100 shadow-sm border-0 hover-card">
           <!-- IMAGE -->
           <div class="position-relative">
-            <img
-              :src="
-                lesson.thumbnail ||
-                'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500'
-              "
-              class="card-img-top"
-            />
+            <img :src="lesson.thumbnail ||
+              'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500'
+              " class="card-img-top" />
 
             <div class="position-absolute top-50 start-50 translate-middle">
               <i class="bi bi-play-fill fs-1 text-white"></i>
@@ -74,34 +56,30 @@
             <div class="d-flex justify-content-between align-items-start">
               <h6 class="fw-bold mb-1">{{ lesson.title }}</h6>
 
-              <span
-                class="badge rounded-pill"
-                :class="{
-                  'bg-success': getStatusValue(lesson) == 'submitted',
-                  'bg-danger': getStatusValue(lesson) == 'pending',
-                  'bg-secondary': getStatusValue(lesson) == 'none',
-                }"
-              ></span>
+              <span class="badge rounded-pill d-flex align-items-center gap-1" :class="{
+                'bg-success': getStatusValue(lesson) == 'submitted',
+                'bg-danger': getStatusValue(lesson) == 'pending',
+                'bg-secondary': getStatusValue(lesson) == 'none',
+              }">
+                <i :class="getStatusValue(lesson) == 'submitted'
+                    ? 'bi-check-circle'
+                    : 'bi-clock'
+                  "></i>
+                {{ getStatusLabel(lesson) }}
+              </span>
             </div>
 
             <p class="text-muted small flex-grow-1">
               {{ lesson.description || "Dars haqida qisqacha ma’lumot" }}
             </p>
 
-            <div
-              class="d-flex justify-content-between small border-top pt-2 mt-2"
-            >
-              <span
-                ><i class="bi bi-calendar"></i>
-                {{ lesson.date || "Bugun" }}</span
-              >
+            <div class="d-flex justify-content-between small border-top pt-2 mt-2">
+              <span><i class="bi bi-calendar"></i>
+                {{ lesson.date || "Bugun" }}</span>
               <span class="fw-bold">{{ getStatusLabel(lesson) }}</span>
             </div>
 
-            <button
-              class="btn btn-primary w-100 mt-3"
-              @click="openLesson(lesson)"
-            >
+            <button class="btn btn-primary w-100 mt-3" @click="openLesson(lesson)">
               Ko‘rish
             </button>
           </div>
@@ -125,36 +103,37 @@
           </div>
 
           <div class="modal-body">
-            <iframe
-              :src="currentLesson?.url"
-              class="w-100 mb-3"
-              style="height: 400px"
-            ></iframe>
+            <iframe :src="currentLesson?.url" class="w-100 mb-3" style="height: 400px"></iframe>
 
             <!-- HOMEWORK -->
-            <div v-if="getSubmission(currentLesson?.id)">
-              <div class="alert alert-success">Topshirilgan ✅</div>
+            <div v-if="getSubmission(currentLesson?.id)" class="bg-light p-3 rounded-3">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-2 text-success fw-bold">
+                  <i class="bi bi-check-circle-fill"></i>
+                  Topshirilgan
+                </div>
+                <a :href="getSubmission(currentLesson?.id).url" :download="'homework_' + currentLesson?.id"
+                  class="btn btn-sm btn-outline-primary" target="_blank">
+                  <i class="bi bi-download me-1"></i> Faylni ko'rish
+                </a>
+              </div>
+              <div v-if="getSubmission(currentLesson?.id).comment" class="mt-2 small text-muted border-top pt-2">
+                <strong>Izoh:</strong> {{ getSubmission(currentLesson?.id).comment }}
+              </div>
             </div>
 
-            <div v-else>
-              <input
-                type="file"
-                class="form-control mb-2"
-                @change="handleFileUpload"
-              />
+            <div v-else class="mt-3">
+              <label class="form-label fw-bold small">Uy vazifasi fayli</label>
+              <input type="file" class="form-control shadow-sm mb-3" @change="handleFileUpload" />
 
-              <textarea
-                v-model="homeworkComment"
-                class="form-control mb-2"
-                placeholder="Izoh"
-              ></textarea>
+              <label class="form-label fw-bold small">Izoh (ixtiyoriy)</label>
+              <textarea v-model="homeworkComment" class="form-control shadow-sm mb-3" rows="3"
+                placeholder="Vazifa haqida qo'shimcha ma'lumot..."></textarea>
 
-              <button
-                class="btn btn-primary w-100"
-                :disabled="!homeworkFile"
-                @click="submitHomework"
-              >
-                Yuborish
+              <button class="btn btn-primary w-100 py-2 fw-bold shadow-sm" :disabled="!homeworkFile || isSubmitting"
+                @click="submitHomework">
+                <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-2"></span>
+                {{ isSubmitting ? "Yuborilmoqda..." : "Vazifani yuborish" }}
               </button>
             </div>
           </div>
@@ -180,6 +159,7 @@ const currentLesson = ref(null);
 
 const homeworkFile = ref(null);
 const homeworkComment = ref("");
+const isSubmitting = ref(false);
 
 const groupLessons = computed(() => {
   return store.videos.filter((v) => v.group === groupName);
@@ -234,14 +214,32 @@ function handleFileUpload(e) {
 }
 
 function submitHomework() {
-  const url = URL.createObjectURL(homeworkFile.value);
+  if (!homeworkFile.value) return;
 
-  store.submitHomework(currentLesson.value.id, {
-    url,
-    comment: homeworkComment.value,
-  });
+  isSubmitting.value = true;
+  const reader = new FileReader();
 
-  closeModal();
+  reader.onload = (e) => {
+    const base64Data = e.target.result;
+
+    store.submitHomework(currentLesson.value.id, {
+      url: base64Data,
+      comment: homeworkComment.value,
+      fileName: homeworkFile.value.name,
+    });
+
+    isSubmitting.value = false;
+    homeworkFile.value = null;
+    homeworkComment.value = "";
+    closeModal();
+  };
+
+  reader.onerror = () => {
+    alert("Faylni o'qishda xatolik yuz berdi!");
+    isSubmitting.value = false;
+  };
+
+  reader.readAsDataURL(homeworkFile.value);
 }
 </script>
 

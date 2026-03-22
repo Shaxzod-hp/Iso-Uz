@@ -2,7 +2,7 @@
   <div class="kirish">
     <div class="main h-100">
       <div>
-        <h1 class="fw-bold">
+        <h1 class="fw-bold md: text-sm">
           Welcome to Iso<span class="text-danger">Uz</span>
         </h1>
         <div class="line"></div>

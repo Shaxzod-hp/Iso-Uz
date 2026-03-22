@@ -90,12 +90,15 @@ export const useMainStore = defineStore("main", () => {
   ]));
 
   // Migration for Market (Reset bought state if needed and update images)
+  const BASE_URL = import.meta.env.BASE_URL || '/';
   if (marketItems.value && marketItems.value.length > 0) {
     marketItems.value = marketItems.value.map(item => {
       const defaultItem = DEFAULT_MARKET.find(d => d.id === item.id);
       if (defaultItem) {
-        if (defaultItem.image && defaultItem.image.startsWith('/market/')) {
-          item.image = defaultItem.image;
+        // Fix image paths for GitHub Pages
+        if (defaultItem.image && !defaultItem.image.startsWith('http')) {
+          const cleanPath = defaultItem.image.startsWith('/') ? defaultItem.image.slice(1) : defaultItem.image;
+          item.image = BASE_URL + cleanPath;
         }
         // Force bought to false if it's currently true to meet user request
         item.bought = false;
@@ -107,18 +110,7 @@ export const useMainStore = defineStore("main", () => {
   const videos = ref(load("iso_videos", DEFAULT_VIDEOS));
 
   // Migration for Market (Reset bought state if needed and update images)
-  if (marketItems.value && marketItems.value.length > 0) {
-    marketItems.value = marketItems.value.map(item => {
-      const defaultItem = DEFAULT_MARKET.find(d => d.id === item.id);
-      if (defaultItem) {
-        if (defaultItem.image && defaultItem.image.startsWith('/market/')) {
-          item.image = defaultItem.image;
-        }
-        item.bought = false;
-      }
-      return item;
-    });
-  }
+  // (Removed redundant block)
 
   // GETTERS
   const sortedStudentsByRating = computed(() => {

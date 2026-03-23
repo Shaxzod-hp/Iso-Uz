@@ -1,7 +1,7 @@
 <template>
-  <div class="container-fluid h-100 d-flex flex-column bg-white p-3">
+  <div class="container-fluid h-100 d-flex flex-column bg-white">
     <!-- HEADER -->
-    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-3">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
       <div class="d-flex align-items-center gap-3">
         <router-link to="/student/groups" class="btn btn-light shadow-sm rounded-3">
           <i class="bi bi-chevron-left"></i>
@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <div class="d-flex gap-2 flex-wrap">
+      <div class="d-flex gap-2">
         <!-- SEARCH -->
         <div class="input-group shadow-sm" style="max-width: 250px">
           <span class="input-group-text bg-light border-0">
@@ -33,9 +33,9 @@
     </div>
 
     <!-- LESSONS -->
-    <div class="row g-3 flex-grow-1 overflow-auto">
+    <div class="row g-3 flex-grow-1 mt-3 overflow-auto">
       <div v-for="lesson in filteredLessons" :key="lesson.id" class="col-lg-4 col-md-6">
-        <div class="card h-100 shadow-sm border-0 hover-card">
+        <div class="card h-100 shadow-sm border-1 hover-card">
           <!-- IMAGE -->
           <div class="position-relative">
             <img :src="lesson.thumbnail ||
@@ -62,8 +62,8 @@
                 'bg-secondary': getStatusValue(lesson) == 'none',
               }">
                 <i :class="getStatusValue(lesson) == 'submitted'
-                    ? 'bi-check-circle'
-                    : 'bi-clock'
+                  ? 'bi-check-circle'
+                  : 'bi-clock'
                   "></i>
                 {{ getStatusLabel(lesson) }}
               </span>
@@ -95,7 +95,7 @@
 
     <!-- MODAL -->
     <div v-if="showModal" class="modal fade show d-block">
-      <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-dialog modal-xl modal-dialog-center">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">{{ currentLesson?.title }}</h5>
@@ -246,6 +246,6 @@ function submitHomework() {
 <style scoped>
 .hover-card:hover {
   transform: translateY(-5px);
-  transition: 0.3s;
+  transition: 0.3s ease-in-out;
 }
 </style>

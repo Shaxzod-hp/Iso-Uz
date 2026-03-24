@@ -5,7 +5,7 @@ const HOMEWORK_VIDEOS = [
         url: "https://www.youtube.com/embed/W6NZfCO5SIk",
         description: "Ushbu darsda JavaScript dasturlash tiliga kirish, o'zgaruvchilar (let, const, var) va asosiy ma'lumot turlari haqida gaplashamiz.",
         duration: "15:20",
-        thumbnail: "https://img.youtube.com/vi/W6NZfCO5SIk/0.jpg",
+        thumbnail: "https://img.youtube.com/vi/W6NZfCO5SIk/mqdefault.jpg",
         group: "JavaScript Bootcamp"
     },
     {
@@ -14,7 +14,7 @@ const HOMEWORK_VIDEOS = [
         url: "https://www.youtube.com/embed/iLWRpG-gA-E",
         description: "Massivlar bilan ishlashning eng muhim metodlari: map, filter va reduce darsi.",
         duration: "22:45",
-        thumbnail: "https://img.youtube.com/vi/iLWRpG-gA-E/0.jpg",
+        thumbnail: "https://img.youtube.com/vi/iLWRpG-gA-E/mqdefault.jpg",
         group: "JavaScript Bootcamp"
     },
     {
@@ -23,7 +23,7 @@ const HOMEWORK_VIDEOS = [
         url: "https://www.youtube.com/embed/Zq5fmkH0T78",
         description: "Vue.js 3 dagi yangiliklar va Composition API dan foydalanish asoslari.",
         duration: "18:10",
-        thumbnail: "https://img.youtube.com/vi/Zq5fmkH0T78/0.jpg",
+        thumbnail: "https://img.youtube.com/vi/Zq5fmkH0T78/mqdefault.jpg",
         group: "Frontend 301"
     },
     {
@@ -32,7 +32,7 @@ const HOMEWORK_VIDEOS = [
         url: "https://www.youtube.com/embed/8Ext9G7xspg",
         description: "Pythonda funktsiyalar yaratish, argumentlar va natija qaytarish.",
         duration: "12:30",
-        thumbnail: "https://img.youtube.com/vi/8Ext9G7xspg/0.jpg",
+        thumbnail: "https://img.youtube.com/vi/8Ext9G7xspg/mqdefault.jpg",
         group: "Python 101"
     },
     {
@@ -41,7 +41,7 @@ const HOMEWORK_VIDEOS = [
         url: "https://www.youtube.com/embed/FTFaQWZBqQ8",
         description: "Figma dasturida interfeyslar yaratish va asosiy instrumentlar.",
         duration: "25:15",
-        thumbnail: "https://img.youtube.com/vi/FTFaQWZBqQ8/0.jpg",
+        thumbnail: "https://img.youtube.com/vi/FTFaQWZBqQ8/mqdefault.jpg",
         group: "UI/UX Design"
     }
 ];

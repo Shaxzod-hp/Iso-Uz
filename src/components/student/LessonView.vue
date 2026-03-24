@@ -40,7 +40,7 @@
           <div class="position-relative">
             <img :src="lesson.thumbnail ||
               'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500'
-              " class="card-img-top" />
+              " class="card-img-top" loading="lazy" />
 
             <div class="position-absolute top-50 start-50 translate-middle">
               <i class="bi bi-play-fill fs-1 text-white"></i>

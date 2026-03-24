@@ -52,7 +52,7 @@
           <div class="bg-white d-flex align-items-center justify-content-center p-4 position-relative"
             style="height: 220px;">
             <img v-if="item.image" :src="item.image" class="w-100 h-100 object-fit-contain transition-all hover-zoom"
-              :alt="item.name"
+              :alt="item.name" loading="lazy"
               @error="(e) => (e.target.src = 'https://ui-avatars.com/api/?name=' + item.name + '&background=f8fafc&color=6366f1')" />
             <div v-else class="text-center opacity-25">
               <i class="bi bi-image fs-1 d-block mb-1"></i>

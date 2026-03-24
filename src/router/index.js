@@ -83,6 +83,10 @@ const router = createRouter({
           component: () => import('@/components/student/Payments.vue')
         },
         {
+          path: 'notifications',
+          component: () => import('@/components/student/Notifications.vue')
+        },
+        {
           path: 'group/:name',
           component: () => import('@/components/student/LessonView.vue')
         },
@@ -165,35 +169,43 @@ const router = createRouter({
           component: () => import('@/components/Admin/Courses.vue')
         }
       ]
+    },
+    // CATCH-ALL (404)
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/access'
     }
 
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  const currentUser = JSON.parse(localStorage.getItem('iso_currentUser') || 'null')
+router.beforeEach((to) => {
+  let currentUser = null
+  try {
+    currentUser = JSON.parse(localStorage.getItem('iso_currentUser') || 'null')
+  } catch (e) {
+    console.error('Failed to parse user from localStorage', e)
+    localStorage.removeItem('iso_currentUser')
+  }
   const isAuthenticated = !!currentUser
   const authOnlyPaths = ['/login', '/register', '/register-success']
 
   // If trying to access a protected route without auth
   if (to.matched.some(r => r.meta.requiresAuth) && !isAuthenticated) {
-    return next('/login')
+    return '/login'
   }
 
   // If authenticated and going to login/register pages, redirect to dashboard
   if (isAuthenticated && authOnlyPaths.includes(to.path)) {
-    return next(`/${currentUser.role}`)
+    return `/${currentUser.role}`
   }
 
   // Root redirect
-  if (to.path === '/' && !isAuthenticated) {
-    return next('/access')
-  }
-  if (to.path === '/' && isAuthenticated) {
-    return next(`/${currentUser.role}`)
+  if (to.path === '/') {
+    return isAuthenticated ? `/${currentUser.role}` : '/access'
   }
 
-  next()
+  return true // Continue navigation
 })
 
 export default router

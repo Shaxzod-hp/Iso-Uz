@@ -27,8 +27,13 @@ const DEFAULT_ADMIN = {
 function load(key, fallback) {
   try {
     const d = localStorage.getItem(key);
-    return d ? JSON.parse(d) : fallback;
-  } catch {
+    if (!d || d === 'undefined') return fallback;
+    const parsed = JSON.parse(d);
+    // Basic validation for common array types
+    if (Array.isArray(fallback) && !Array.isArray(parsed)) return fallback;
+    return parsed;
+  } catch (e) {
+    console.error(`Error loading key "${key}" from localStorage:`, e);
     return fallback;
   }
 }
@@ -70,6 +75,14 @@ export const useMainStore = defineStore("main", () => {
   const activity = ref(load("iso_teacher_activity", []));
   const isDarkMode = ref(load("iso_dark_mode", false));
   const homeworkSubmissions = ref(load("iso_homework_submissions", []));
+
+  // Ensure these are always arrays to prevent .map/.forEach crashes
+  if (!Array.isArray(students.value)) students.value = JSON.parse(JSON.stringify(DEFAULT_STUDENTS));
+  if (!Array.isArray(teachers.value)) teachers.value = JSON.parse(JSON.stringify(DEFAULT_TEACHERS));
+  if (!Array.isArray(marketItems.value)) marketItems.value = JSON.parse(JSON.stringify(DEFAULT_MARKET || []));
+  if (!Array.isArray(projects.value)) projects.value = JSON.parse(JSON.stringify(DEFAULT_PROJECTS || []));
+  if (!Array.isArray(notifications.value)) notifications.value = [];
+  if (!Array.isArray(homeworkSubmissions.value)) homeworkSubmissions.value = [];
 
   // Sync students migration: Ensure roles are saved
   if (students.value.some(s => !s.role)) {
